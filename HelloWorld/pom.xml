@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>HibernateCache</groupId>
+  <artifactId>HibernateCache</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <description></description>
+  <dependencies>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>ejb3-persistence</artifactId>
+      <version>1.0.1.GA</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-annotations</artifactId>
+      <version>3.3.1.GA</version>
+    </dependency>
+    <!-- <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.10</version>
+    </dependency> -->
+	<dependency>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc6</artifactId>
+        <version>11.2.0.3</version>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+        <id>GlassFish</id>
+        <name>GlassFish Maven Repository</name>
+        <url>http://download.java.net/maven/glassfish/</url>
+    </repository>
+    <repository>
+        <id>java.net.m1repo</id>
+        <name>java.net Maven 1 Repository</name>
+        <url>http://download.java.net/maven/1/</url>
+        <layout>legacy</layout>
+    </repository>
+    <repository>
+        <id>java.net.m2repo</id>
+        <name>java.net Maven 2 Repository</name>
+        <url>http://download.java.net/maven/2/</url>
+        <layout>default</layout>
+    </repository>
+    <repository>
+        <id>codelds</id>
+        <url>https://code.lds.org/nexus/content/groups/main-repo</url>
+    </repository>
+</repositories> 
+</project>
