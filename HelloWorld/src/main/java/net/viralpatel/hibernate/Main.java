@@ -15,6 +15,7 @@ public class Main {
 				System.currentTimeMillis()), "911");
 		empl.setId(20L);
 		empl = save(empl);
+		read();
 
 	}
 
@@ -31,6 +32,18 @@ public class Main {
 		session.close();
 
 		return employee;
+	}
+	
+	private static Employee read(){
+		SessionFactory sf = buildSessionFactory();
+		Session session = sf.openSession();
+
+		Employee e = (Employee)session.get(Employee.class, 20L);
+		System.out.println("The First Name:"+e.getFirstname());
+		
+		session.close();
+		return e;
+		
 	}
 	
 	private static SessionFactory buildSessionFactory() {

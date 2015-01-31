@@ -39,7 +39,9 @@ public class Employee {
 		this.cellphone = phone;
 		
 	}
+	
 	public Long getId() {
+		System.out.println("***In the getId field****");
 		return id;
 	}
 
@@ -60,6 +62,7 @@ public class Employee {
 	}
 
 	public void setId(Long id) {
+		System.out.println("***In the setId field****");
 		this.id = id;
 	}
 
@@ -72,11 +75,13 @@ public class Employee {
 	}
 
 	public void setBirthDate(Date birthDate) {
+		System.out.println("****In the required setget methods****");
 		this.birthDate = birthDate;
 	}
 
 	public void setCellphone(String cellphone) {
 		this.cellphone = cellphone;
 	}
+	
 	
 }
