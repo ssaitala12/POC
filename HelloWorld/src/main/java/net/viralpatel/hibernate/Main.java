@@ -30,7 +30,7 @@ public class Main {
 		session.getTransaction().commit();
 
 		session.close();
-
+ 
 		return employee;
 	}
 	
@@ -39,13 +39,14 @@ public class Main {
 		Session session = sf.openSession();
 
 		Employee e = (Employee)session.get(Employee.class, 20L);
-		System.out.println("The First Name:"+e.getFirstname());
+		System.out.println("The First Name:"+e.getMy());
 		
 		session.close();
 		return e;
 		
 	}
 	
+		
 	private static SessionFactory buildSessionFactory() {
         try {
             // Create the SessionFactory from hibernate.cfg.xml

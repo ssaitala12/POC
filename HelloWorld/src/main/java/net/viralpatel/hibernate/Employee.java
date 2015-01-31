@@ -2,11 +2,14 @@ package net.viralpatel.hibernate;
 
 import java.sql.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 
 
 @Entity
@@ -14,9 +17,11 @@ import javax.persistence.Table;
 public class Employee {
 
 	@Id
+	@Basic
 	private Long id;
 	
 	@Column(name="firstname")
+	@Basic(fetch=FetchType.LAZY)
 	private String firstname;
 	
 	@Column(name="lastname")
@@ -45,7 +50,7 @@ public class Employee {
 		return id;
 	}
 
-	public String getFirstname() {
+	public String getMy() {
 		return firstname;
 	}
 
@@ -66,7 +71,7 @@ public class Employee {
 		this.id = id;
 	}
 
-	public void setFirstname(String firstname) {
+	public void setMy(String firstname) {
 		this.firstname = firstname;
 	}
 
