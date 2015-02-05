@@ -3,12 +3,15 @@ package net.viralpatel.hibernate;
 import java.sql.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,6 +27,10 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="Emp_Gen")
 	private Long id;
 	
+	@ManyToOne
+	@JoinColumn(name="depat_id",nullable=true )
+	private Department department;
+		
 	@Column(name="firstname")
 	@Basic(fetch=FetchType.LAZY)
 	private String firstname;
@@ -54,7 +61,14 @@ public class Employee {
 	}
 	
 	
-	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	public EmployeeType getEmployeeType() {
 		return employeeType;
 	}

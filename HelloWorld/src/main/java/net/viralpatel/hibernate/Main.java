@@ -7,23 +7,50 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 public class Main {
+	static SessionFactory sessionFactory;
+	static Session session;
+	
+	
 
 	public static void main(String[] args) {
 		// Write
 		System.out.println("******* WRITE *******");
 		Employee empl = new Employee("Jack", "Bauer", new Date(
 				System.currentTimeMillis()), "911");
-		/*empl.setId(20L);*/
+		
 		empl.setEmployeeType(EmployeeType.FULL_TIME_EMPLOYEE);
+		
+		
+		Department d = new Department();
+		d.setDepartment_id(22);
+		d.setDepartmentName("Test Department");
+		d.setDepartmentDescription("Thisis a sample description of the sample department");
+		
+		empl.setDepartment(d);
+		getSession();
+		save(d);
+		getSession();
 		empl = save(empl);
-		read();
+//		read();
 
 	}
 
+	public static Session getSession() {
+		if (sessionFactory == null) {
+			sessionFactory = buildSessionFactory();
+			session = sessionFactory.openSession();
+			return session;
+		} else if(session.isDirty()){
+			session = sessionFactory.openSession();
+			return session;
+		}
+		else {
+			return session;
+		}
+		
+	}
 	private static Employee save(Employee employee) {
-		SessionFactory sf = buildSessionFactory();
-		Session session = sf.openSession();
-
+		
 		session.beginTransaction();
 
 		Long id = (Long) session.save(employee);
@@ -35,7 +62,20 @@ public class Main {
 		return employee;
 	}
 	
-	private static Employee read(){
+private static Department save(Department department) {
+		
+		session.beginTransaction();
+
+		session.save(department);
+
+		session.getTransaction().commit();
+
+//		session.close();
+ 
+		return department;
+	}
+	
+	/*private static Employee read(){
 		SessionFactory sf = buildSessionFactory();
 		Session session = sf.openSession();
 
@@ -46,7 +86,7 @@ public class Main {
 		return e;
 		
 	}
-	
+	*/
 		
 	private static SessionFactory buildSessionFactory() {
         try {
