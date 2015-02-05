@@ -6,8 +6,12 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 
 
@@ -18,6 +22,8 @@ public class Employee {
 
 	@Id
 	@Basic
+	@TableGenerator(name="id_gen")
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="id_gen")
 	private Long id;
 	
 	@Column(name="firstname")
@@ -32,6 +38,10 @@ public class Employee {
 	
 	@Column(name="cell_phone")
 	private String cellphone;
+	
+	
+	@Column(name="employee_type")
+	private EmployeeType employeeType;
 
 	public Employee() {
 		
@@ -45,6 +55,16 @@ public class Employee {
 		
 	}
 	
+	
+	
+	public EmployeeType getEmployeeType() {
+		return employeeType;
+	}
+
+	public void setEmployeeType(EmployeeType employeeType) {
+		this.employeeType = employeeType;
+	}
+
 	public Long getId() {
 		System.out.println("***In the getId field****");
 		return id;

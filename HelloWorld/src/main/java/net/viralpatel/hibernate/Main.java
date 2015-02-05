@@ -13,7 +13,8 @@ public class Main {
 		System.out.println("******* WRITE *******");
 		Employee empl = new Employee("Jack", "Bauer", new Date(
 				System.currentTimeMillis()), "911");
-		empl.setId(20L);
+		/*empl.setId(20L);*/
+		empl.setEmployeeType(EmployeeType.FULL_TIME_EMPLOYEE);
 		empl = save(empl);
 		read();
 
