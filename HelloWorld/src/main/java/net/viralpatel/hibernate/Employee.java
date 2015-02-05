@@ -9,9 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
 
 
@@ -21,9 +20,8 @@ import javax.persistence.TableGenerator;
 public class Employee {
 
 	@Id
-	@Basic
-	@TableGenerator(name="id_gen")
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="id_gen")
+	@SequenceGenerator(name="Emp_Gen", sequenceName="Emp_Seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="Emp_Gen")
 	private Long id;
 	
 	@Column(name="firstname")
