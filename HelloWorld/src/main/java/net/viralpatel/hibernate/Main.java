@@ -1,6 +1,8 @@
 package net.viralpatel.hibernate;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,6 +22,11 @@ public class Main {
 		
 		empl.setEmployeeType(EmployeeType.FULL_TIME_EMPLOYEE);
 		
+		Employee emp2 = new Employee("second", "person", new Date(
+				System.currentTimeMillis()), "222");
+		
+		empl.setEmployeeType(EmployeeType.PART_TIME_EMPLOYEE);
+		
 		
 		Department d = new Department();
 		d.setDepartment_id(22);
@@ -27,10 +34,17 @@ public class Main {
 		d.setDepartmentDescription("Thisis a sample description of the sample department");
 		
 		empl.setDepartment(d);
+		emp2.setDepartment(d);
+		List employeLst = new ArrayList();
+		employeLst.add(empl);
+		employeLst.add(emp2);
+		d.setEmployeeLst(employeLst);
+		
 		getSession();
 		save(d);
-		getSession();
-		empl = save(empl);
+		
+		/*getSession();
+		empl = save(empl);*/
 //		read();
 
 	}

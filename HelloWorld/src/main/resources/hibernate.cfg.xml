@@ -8,8 +8,8 @@
         <!-- Database connection settings -->
         <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
-        <property name="connection.username">ssaitala</property>
-        <property name="connection.password">password</property>
+        <property name="connection.username">cm_rpt_100</property>
+        <property name="connection.password">cm_rpt_100</property>
         
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
@@ -26,7 +26,7 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">create-drop</property>
  
  		<mapping class="net.viralpatel.hibernate.Employee"/>
  		<mapping class="net.viralpatel.hibernate.Department"/>

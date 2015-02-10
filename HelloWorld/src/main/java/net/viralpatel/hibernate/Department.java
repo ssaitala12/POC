@@ -1,7 +1,11 @@
 package net.viralpatel.hibernate;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +17,9 @@ public class Department {
 	private String departmentName;
 	
 	private String departmentDescription;
+	
+//	@OneToMany(mappedBy="department", cascade=CascadeType.ALL)
+	private List<Employee> employeeLst;
 
 	
 	
@@ -39,6 +46,16 @@ public class Department {
 	public void setDepartmentDescription(String departmentDescription) {
 		this.departmentDescription = departmentDescription;
 	}
+
+	public List<Employee> getEmployeeLst() {
+		return employeeLst;
+	}
+
+	public void setEmployeeLst(List<Employee> employeeLst) {
+		this.employeeLst = employeeLst;
+	}
+	
+	
 	
 	
 }
