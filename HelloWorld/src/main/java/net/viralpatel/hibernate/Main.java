@@ -1,12 +1,11 @@
 package net.viralpatel.hibernate;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+
+import com.hib.onetoone.Citizen;
+import com.hib.onetoone.VoterCard;
 
 public class Main {
 	static SessionFactory sessionFactory;
@@ -15,38 +14,26 @@ public class Main {
 	
 
 	public static void main(String[] args) {
-		// Write
-		System.out.println("******* WRITE *******");
-		Employee empl = new Employee("Jack", "Bauer", new Date(
-				System.currentTimeMillis()), "911");
+		// Testing OneToOne unidirectional Mapping -- Start
+		Citizen citizen1 = new Citizen();
+		citizen1.setName("Srinivas");
+		citizen1.setAddress("Miyapur");
 		
-		empl.setEmployeeType(EmployeeType.FULL_TIME_EMPLOYEE);
+		VoterCard voterCard1 = new VoterCard();
+		voterCard1.setIssuedBy("Government Of Telangana");
 		
-		Employee emp2 = new Employee("second", "person", new Date(
-				System.currentTimeMillis()), "222");
-		
-		empl.setEmployeeType(EmployeeType.PART_TIME_EMPLOYEE);
-		
-		
-		Department d = new Department();
-		d.setDepartment_id(22);
-		d.setDepartmentName("Test Department");
-		d.setDepartmentDescription("Thisis a sample description of the sample department");
-		
-		empl.setDepartment(d);
-		emp2.setDepartment(d);
-		List employeLst = new ArrayList();
-		employeLst.add(empl);
-		employeLst.add(emp2);
-		d.setEmployeeLst(employeLst);
-		
-		getSession();
-		save(d);
+		citizen1.setVoterCard(voterCard1);
 		
 		/*getSession();
-		empl = save(empl);*/
-//		read();
-
+		save(citizen1);*/
+		
+		// Testing OneToOne unidirectional Mapping -- End
+		
+		// Testing one-to-one bidirectional mapping -- start.
+		voterCard1.setCitizen(citizen1);
+		getSession();
+		save(voterCard1);
+		// Testing one-to-one bidirectional mapping -- start.
 	}
 
 	public static Session getSession() {
@@ -63,19 +50,21 @@ public class Main {
 		}
 		
 	}
-	private static Employee save(Employee employee) {
+	private static void save(Citizen citizen) {
 		
 		session.beginTransaction();
-
-		Long id = (Long) session.save(employee);
-
+		session.save(citizen);
 		session.getTransaction().commit();
-
 		session.close();
- 
-		return employee;
-	}
+ 	}
 	
+private static void save(VoterCard voterCard) {
+		
+		session.beginTransaction();
+		session.save(voterCard);
+		session.getTransaction().commit();
+		session.close();
+ 	}
 private static Department save(Department department) {
 		
 		session.beginTransaction();
