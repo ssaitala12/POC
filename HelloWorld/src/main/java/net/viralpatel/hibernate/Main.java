@@ -1,7 +1,6 @@
 package net.viralpatel.hibernate;
 
-import java.sql.Date;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -9,12 +8,23 @@ import org.hibernate.cfg.AnnotationConfiguration;
 public class Main {
 
 	public static void main(String[] args) {
-		// Write
-		System.out.println("******* WRITE *******");
-		Employee empl = new Employee("Jack", "Bauer", new Date(
-				System.currentTimeMillis()), "911");
-		empl.setId(20L);
-		empl = save(empl);
+		SessionFactory sf = buildSessionFactory();
+		Session session = sf.openSession();
+		session.beginTransaction();
+		
+		Query query = session.createQuery("from Employee"); // Here * will not be there in the query.
+		
+		System.out.println("The size of the complete query : "+query.list());
+		/*
+		 * Another flavour of the query is given below. The only difference which you can see in the 
+		 * the normal jdbc calls and the HQL calls is that, in the HQL we get a resultset. Whereas,
+		 * in the HQL we get a list of objects.
+		 */
+		
+		Query query1 = session.createQuery("from Employee where id = 2");
+		System.out.println("The size of the query object is: "+query1.list());
+		
+		
 
 	}
 
